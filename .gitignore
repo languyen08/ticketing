@@ -1,3 +1,4 @@
 /auth/node_modules/
+/auth/auth.iml
 .idea
-infra/infra.iml
+/infra/infra.iml
