@@ -1,4 +1,4 @@
-import express, { Express, NextFunction, Request, Response } from "express";
+import express, { Express } from "express";
 import { json } from "body-parser";
 import cookieSession from "cookie-session";
 import { currentUserRouter } from "./routes/current-user";
@@ -7,15 +7,14 @@ import { signoutRouter } from "./routes/signout";
 import { signupRouter } from "./routes/signup";
 import { NotFoundError } from "./error/not-found-error";
 import { errorHandler } from "./middlewares/error-handler";
-import 'express-async-errors';
 
-export const app: Express = express();
+const app: Express = express();
 app.set('trust proxy', true);
 app.use(json());
 app.use(
     cookieSession({
         signed: false,
-        secure: true
+        secure: process.env.NODE_ENV !== 'test'
     })
 )
 app.use(currentUserRouter);
@@ -27,8 +26,6 @@ app.all('*', async () => {
     throw new NotFoundError();
 })
 
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-    errorHandler(err, req, res, next);
-});
+app.use(errorHandler);
 
-// export { app };
+export { app }

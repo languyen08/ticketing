@@ -1,5 +1,6 @@
+import 'express-async-errors';
 import mongoose from 'mongoose';
-import { app } from "./app";
+import { app } from './app';
 
 const start = async () => {
     if (!process.env.JWT_KEY) {

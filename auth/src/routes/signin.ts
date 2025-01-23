@@ -1,9 +1,9 @@
-import express, {Request, Response} from 'express'
-import {body} from "express-validator";
-import {validateRequest} from "../middlewares/validate-request";
-import {User} from "../model/user";
-import {BadRequestError} from "../error/bad-request-error";
-import {PasswordManager} from "../service/password-manager";
+import express, { Request, Response } from 'express'
+import { body } from "express-validator";
+import { validateRequest } from "../middlewares/validate-request";
+import { User } from "../model/user";
+import { BadRequestError } from "../error/bad-request-error";
+import { PasswordManager } from "../service/password-manager";
 import jwt from "jsonwebtoken";
 
 const router = express.Router();
@@ -48,4 +48,4 @@ router.post('/api/users/signin',
         res.status(200).send(existingUser);
     })
 
-export {router as signinRouter};
+export { router as signinRouter };
