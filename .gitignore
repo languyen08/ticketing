@@ -1,7 +1,8 @@
 .idea
 .next
 /auth/node_modules/
+/client/node_modules/
 /auth/auth.iml
 /infra/infra.iml
 /client/client.iml
-/client/node_modules/
+common
