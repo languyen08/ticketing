@@ -20,4 +20,4 @@ const start = async () => {
     });
 }
 
-start().then(r => console.log("Cannot start auth service"));
+start().then(r => console.log("Cannot start tickets service"));
