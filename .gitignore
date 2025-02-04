@@ -3,8 +3,10 @@
 /auth/node_modules/
 /client/node_modules/
 /tickets/node_modules/
+/nats-test/node_modules
 /auth/auth.iml
 /infra/infra.iml
 /client/client.iml
 /tickets/tickets.iml
+/nats-test/nats-test.iml
 common
