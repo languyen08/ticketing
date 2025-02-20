@@ -3,6 +3,7 @@ import { requireAuth, validateRequest } from "@ntlantickets/common";
 import { body } from "express-validator";
 import { Ticket } from "../models/ticket";
 import { TicketCreatedPublisher } from "../events/publishers/ticket-created-publisher";
+import { natsWrapper } from "../nats-wrapper";
 
 const router = express.Router();
 
@@ -25,7 +26,7 @@ router.post('/api/tickets', requireAuth, [
 
     await ticket.save();
 
-    new TicketCreatedPublisher(client).publish({
+    await new TicketCreatedPublisher(natsWrapper.client).publish({
         id: ticket.id,
         title: ticket.title,
         price: ticket.price,
