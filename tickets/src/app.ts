@@ -1,3 +1,4 @@
+import 'express-async-errors';
 import express, { Express } from "express";
 import { json } from "body-parser";
 import cookieSession from "cookie-session";
