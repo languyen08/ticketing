@@ -39,4 +39,4 @@ const start = async () => {
     });
 }
 
-start().then(r => console.log("Cannot start tickets service"));
+start().then(r => console.log("Cannot start orders service"));
