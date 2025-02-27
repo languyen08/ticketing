@@ -2,6 +2,8 @@ import mongoose, { Document } from "mongoose";
 import { OrderStatus } from "@ntlantickets/common";
 import { TicketDoc } from "./ticket";
 
+export { OrderStatus };
+
 interface OrderAttrs {
     userId: string;
     status: OrderStatus;
@@ -43,6 +45,7 @@ const orderSchema = new mongoose.Schema({
         transform(doc: Document, ret: Record<string, any>) {
             ret.id = ret._id;
             delete ret._id;
+            delete ret.__v;
         }
     }
 })
