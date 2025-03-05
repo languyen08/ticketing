@@ -42,7 +42,7 @@ router.post('/api/orders', requireAuth, [
     await order.save();
     // Publish an event saying that an order was created
 
-    res.status(201).send({});
+    res.status(201).send(order);
 });
 
 export { router as newOrderRouter };

@@ -2,8 +2,7 @@ import mongoose from "mongoose";
 import { app } from "../../app";
 import request from "supertest";
 import { Ticket } from "../../models/ticket";
-import { Order } from "../../models/order";
-import { OrderStatus } from "@ntlantickets/common";
+import { Order, OrderStatus } from "../../models/order";
 
 it('return an error if the ticket does not exist', async () => {
     const ticketId = new mongoose.Types.ObjectId();
