@@ -4,11 +4,11 @@ import { queueGroupName } from "./queue-group-name";
 import { Ticket } from "../../models/ticket";
 import { TicketUpdatedPublisher } from "../publishers/ticket-updated-publisher";
 
-export class OrderCreatedListeners extends Listener<OrderCreatedEvent> {
-    subject: Subjects.OrderCreated =  Subjects.OrderCreated;
+export class OrderCancelledListeners extends Listener<OrderCancelledEvent> {
+    subject: Subjects.OrderCancelled =  Subjects.OrderCancelled;
     queueGroupName = queueGroupName;
 
-    async onMessage(data: OrderCancelledEvent["data"], msg: Message) {
+    async onMessage(data: OrderCreatedEvent["data"], msg: Message) {
         // Find the ticket that the order is reserving
         const ticket = await Ticket.findById(data.ticket.id);
 
@@ -18,7 +18,7 @@ export class OrderCreatedListeners extends Listener<OrderCreatedEvent> {
         }
 
         // Mark the ticket as being reserved by setting its orderId property
-        ticket.set({ orderId: undefined});
+        ticket.set({ orderId: data.id});
 
         // Save the ticket
         await ticket.save();

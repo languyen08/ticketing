@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { NotAuthorizedError, NotFoundError, requireAuth, validateRequest } from "@ntlantickets/common";
+import { BadRequestError, NotAuthorizedError, NotFoundError, requireAuth, validateRequest } from "@ntlantickets/common";
 import { Ticket } from "../models/ticket";
 import { body } from "express-validator";
 import { natsWrapper } from "../nats-wrapper";
@@ -23,6 +23,10 @@ router.put('/api/tickets/:id', requireAuth,
 
         if (!ticket) {
             throw new NotFoundError();
+        }
+
+        if (ticket.orderId) {
+            throw new BadRequestError('Cannot edit a reserved ticket');
         }
 
         if (ticket.userId !== req.currentUser?.id) {
